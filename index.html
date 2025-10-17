@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Aniversario Nicolás y Ginna</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: linear-gradient(135deg, #fdeff2 0%, #ffc9e4 100%);
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      overflow-x: hidden;
+    }
+    h1 {
+      color: #e84190;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 3em;
+      font-family: 'Pacifico', cursive;
+    }
+    .text-box {
+      background: #fff8fc;
+      border-radius: 15px;
+      box-shadow: 0 2px 12px rgba(230,65,144,0.1);
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 30px;
+      text-align: center;
+      font-size: 1.2em;
+      color: #94477b;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 1.4em;
+      margin: 10px auto;
+      color: #c32f89;
+      font-family: 'Montserrat', sans-serif;
+    }
+    #cat {
+    width: 90px;
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    animation:
+        moveCat 12s infinite linear,
+        rotateCat 4s infinite linear;
+    z-index: 2;
+    }
+
+    @keyframes rotateCat {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+    }
+    @keyframes moveCat {
+      0% {left: 10%; top: 80%;}
+      50%{left: 80%; top: 75%;}
+      100%{left: 10%; top: 80%;}
+    }
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #ad5ea4;
+      font-size: 1em;
+    }
+    /* Animación de corazones */
+    .heart {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      pointer-events: none;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 40px;
+      height: 64px;
+      background: #ff7cb2;
+      border-radius: 40px 40px 0 0;
+      transform: rotate(-45deg);
+      top: 0;
+      left: 0;
+    }
+    .heart::after {
+      left: 20px;
+      transform: rotate(45deg);
+    }
+    /* Animación de flores */
+    .flower {
+      position: absolute;
+      width: 29px;
+      height: 29px;
+      pointer-events: none;
+      z-index:1;
+      opacity:0.7;
+    }
+    .nuestra-imagen {
+    display: block;
+    width: 90%;
+    max-width: 450px;
+    margin: 30px auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 5px solid white;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <h1>♡Feliz Aniversario amor♡</h1>
+  <div class="subtitle">Nicolás & Ginna • 3 años juntos</div>
+
+  <div class="text-box" id="mensaje">
+    En este día especial, quiero recordarte lo importante que eres para mí.<br>
+    Hace 3 años comenzó nuestra aventura y desde entonces has llenado mi vida de amor, ternura y alegría.<br>
+    Eres la personita que mas ilumina mis días, que me da fuerzas y me inspira a ser mejor.<br><br>
+    Gracias por ser paciente conmigo, por todos los momentos que compartimos, desde los más simples hasta los locos.<br><br>
+    Porque al pasar tiempo contigo, hasta con los pequeños detalles descubro lo mucho que me gusta estar contigo, y todo el amor que siento por ti.<br><br>
+    Te amo con todo mi corazón, mi amor.<br>
+    Eres mi mejor regalo, mi compañera de aventuras y el amor de mi vida.<br>
+    ¡Feliz aniversario!
+  </div>
+  <img src="imagenanim.png" alt="Nicolás y Ginna" class="nuestra-imagen">
+  
+  <img id="cat" src="https://cdn.pixabay.com/photo/2024/05/15/01/13/cat-8762411_1280.png" alt="Dibujo de gato bonito"/>
+
+  <div class="footer">
+    Con mucho amor, Nicolás <br> <span id="date"></span>
+  </div>
+
+  <script>
+    // Fecha actual
+    document.getElementById("date").textContent =
+      "Hoy es: " + new Date().toLocaleDateString("es-ES");
+
+    // Corazones animados
+    function createHeart(){
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = '-50px';
+      
+      heart.animate([
+        { transform: `translateY(0)`, opacity: 1 },
+        { transform: `translateY(${window.innerHeight-80}px)`, opacity: 0 }
+      ], { duration: 5000 + Math.random()*2000, easing:"linear" });
+
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 700);
+
+    // Flores animadas
+    function createFlower(){
+      let flower = document.createElement('div');
+      flower.className = 'flower';
+      flower.style.left = Math.random() * window.innerWidth + 'px';
+      flower.style.top = '-30px';
+
+      let colors = ['#ffe29a','#ffbd6f','#fd93b5','#a1e2fd','#e0aaf5'];
+      let petals = '';
+      for (let i=0; i<5; i++) {
+        petals += `<div style="width:15px;height:15px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:50%;position:absolute;top:7px;left:7px;transform:rotate(${i*72}deg) translateY(-12px);"></div>`;
+      }
+      // Centro
+      petals += `<div style="width:11px;height:11px;background:#ff7cb2;border-radius:50%;position:absolute;top:9px;left:9px;"></div>`;
+      flower.innerHTML = petals;
+      flower.animate([
+        { transform: `translateY(0)`, opacity: 0.85 },
+        { transform: `translateY(${window.innerHeight-90}px)`, opacity: 0.12 }
+      ], { duration: 6500 + Math.random()*1500, easing:"linear" });
+      document.body.appendChild(flower);
+      setTimeout(() => flower.remove(), 7000);
+    }
+    setInterval(createFlower, 1700);
+  </script>
+</body>
+</html>
